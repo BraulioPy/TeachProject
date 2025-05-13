@@ -68,4 +68,19 @@
 	  <Folder Include="jgfahygdfsdf\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="pages\Pdivision.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pages\Pmulti.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pages\Presta.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="pages\Psuma.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
