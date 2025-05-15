@@ -5,7 +5,7 @@ using System.Data;
 namespace TeachProject
 {
     public partial class MainPage : ContentPage
-    {
+    { 
         public MainPage()
         {
             InitializeComponent();
@@ -46,6 +46,7 @@ namespace TeachProject
                     Bvolver.IsVisible = true;
                     break;
                 }
+
             } while (i <= 5);
         }
 
@@ -178,15 +179,29 @@ namespace TeachProject
         {
             List<string> Operacion = GenerarOperacionMatematica(tipo);
             Random rand = new Random();
-            int segundos = rand.Next(5, 11);
-            Operacion operacionnueva = new Operacion { 
+
+            int segundos;
+
+            if (tipo == "mul" || tipo == "div")
+            {
+                // Tiempo mínimo 30 segundos para multiplicacion y division
+                segundos = rand.Next(30, 41); // Entre 30 y 40 segundos, puedes ajustar el rango
+            }
+            else
+            {
+                // Para suma y resta, se mantiene el tiempo entre 5 y 10 segundos
+                segundos = rand.Next(5, 11);
+            }
+
+            Operacion operacionnueva = new Operacion
+            {
                 tiempo = segundos,
                 operacion = Operacion[0],
                 resultado = Convert.ToDouble(Operacion[1])
             };
             return operacionnueva;
-
         }
+
         public List<string> GenerarOperacionMatematica(string tipoOperacion = "mix")
         {
             Random rand = new Random();
@@ -296,6 +311,33 @@ namespace TeachProject
             LtiempoRestante.Text = "¡Tiempo completado!";
             return true;
         }
+        private async void MostrarInstrucciones(object sender, EventArgs e)
+        {
+            string instrucciones =
+                    @"Bienvenido a Aritmética Fácil.
+            - Selecciona el tipo de operación que quieres practicar.
+            - Para cada ejercicio, tendrás un tiempo limitado para responder.
+            - Ingresa tu respuesta y espera a que termine el tiempo para validar.
+            - Al completar 5 aciertos, podrás regresar a esta pantalla.
+            ¡Disfruta aprendiendo!";
+
+            await DisplayAlert("¿Cómo usar la aplicación?", instrucciones, "Cerrar");
+        }
+        private async void MostrarCreditos(object sender, EventArgs e)
+        {
+            string creditos =
+                    @"Aplicación creada por:
+            - Alcántara Romo Braulio
+            - Cañedo Martínez Adriana Michelle
+
+            Gracias por usar Aritmética Fácil.
+
+            ¡Disfruta aprendiendo!";
+
+            await DisplayAlert("Créditos", creditos, "Cerrar");
+        }
+
+
     }
 
 }
